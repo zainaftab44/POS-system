@@ -1,5 +1,8 @@
-<?php include "header.php"; ?>
-<!-- Page Content -->
+<?php include "header.php";?>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print"/>
+
+        <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
@@ -37,4 +40,4 @@
     </body>
 
 </html>
-<?php include "footer.php"; ?>
+<?php include "footer.php";?>

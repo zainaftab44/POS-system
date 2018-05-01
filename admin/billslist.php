@@ -4,7 +4,11 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Add Stock item</h1>
+                        <h1 class="page-header">Orders List</h1>
+                        <select>
+                        <option>Outsource</option>
+                        <option>Inhouse</option>
+                        </select>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>

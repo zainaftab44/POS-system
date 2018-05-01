@@ -36,8 +36,6 @@
         <!-- Custom Fonts -->
         <!-- <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
         <!--        <link href="../css/calender.min.css" rel="stylesheet" type="text/css">-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print"/>
 
         <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'><link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
@@ -86,6 +84,10 @@
                             </li>
                             <li>
                                 <a href="listproducts.php"><i class="fa fa-sitemap fa-fw"></i> List Products</a>
+                            </li>
+
+                            <li>
+                                <a href="salesreports.php"><i class="fa fa-sitemap fa-fw"></i> Reports</a>
                             </li>
                         </ul>
                     </div>

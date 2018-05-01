@@ -11,10 +11,16 @@
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
-                                <form class="form">
+                                <form class="form form-horizontal">
                                     <fieldset>
 <input type="text" class="form-control-plaintext" placeholder="Enter product name" name="pname"/>
 <input type="number" class="form-control-plaintext" placeholder="Enter Unit price" name="pprice"/>
+ <select class="form-control form-control-lg" style="width:auto" >
+     <option> Select type</option>
+    <option>Outsource</option>
+    <option>Inhouse</option>
+ </select>   
+
 <!-- <input type="text" class="form-control-plaintext" placeholder="quantity" name="pqty"/> -->
 <table  class="table table-striped">
 <th><td>item</td><td>quantity</td></th>
