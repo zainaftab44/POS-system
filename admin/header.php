@@ -41,7 +41,8 @@
 
         <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'><link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-            </head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     </head>
 
     <body>
         <div id="wrapper">
@@ -72,16 +73,19 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Reports</a>
+                                <a href="calendar.php"><i class="fa fa-table fa-fw"></i>Orders Calendar</a>
                             </li>
                             <li>
-                                <a href="forms.html"><i class="fa fa-edit fa-fw">Bills</i> </a>
+                                <a href="listitems.php"><i class="fa fa-edit fa-fw">List Stock</i> </a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-wrench fa-fw"></i>Stock</a>
+                                <a href="additem.php"><i class="fa fa-wrench fa-fw"></i>Add Stock</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> Customers</a>
+                                <a href="addproducts.php"><i class="fa fa-sitemap fa-fw"></i> Add Product</a>
+                            </li>
+                            <li>
+                                <a href="listproducts.php"><i class="fa fa-sitemap fa-fw"></i> List Products</a>
                             </li>
                         </ul>
                     </div>
