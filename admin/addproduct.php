@@ -15,7 +15,7 @@
                                     <fieldset>
 <input type="text" class="form-control-plaintext" placeholder="Enter product name" name="pname"/>
 <input type="number" class="form-control-plaintext" placeholder="Enter Unit price" name="pprice"/>
-<input type="text" class="form-control-plaintext" placeholder="quantity" name="pqty"/>
+<!-- <input type="text" class="form-control-plaintext" placeholder="quantity" name="pqty"/> -->
 <table  class="table table-striped">
 <th><td>item</td><td>quantity</td></th>
 <tr id="stock_table">

@@ -1,4 +1,4 @@
-
+</div>
         <!-- jQuery -->
         <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -10,7 +10,6 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
         <script>

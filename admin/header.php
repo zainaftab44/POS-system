@@ -82,7 +82,7 @@
                                 <a href="additem.php"><i class="fa fa-wrench fa-fw"></i>Add Stock</a>
                             </li>
                             <li>
-                                <a href="addproducts.php"><i class="fa fa-sitemap fa-fw"></i> Add Product</a>
+                                <a href="addproduct.php"><i class="fa fa-sitemap fa-fw"></i> Add Product</a>
                             </li>
                             <li>
                                 <a href="listproducts.php"><i class="fa fa-sitemap fa-fw"></i> List Products</a>
