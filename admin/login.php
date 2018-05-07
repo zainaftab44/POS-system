@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+session_start();
+if (isset($_SESSION["usr"])) {
+    session_abort();
+    session_destroy();
+    session_start();
+}
+?>
 <html lang="en">
 
 <head>

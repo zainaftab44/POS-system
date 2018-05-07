@@ -1,4 +1,4 @@
-<?php include 'header.php' ; ?>
+<?php include 'header.php';?>
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -10,12 +10,24 @@
         <div class="row">
             <div class="col-lg-12">
                 <table class="table table-bordered table-striped">
-                    <th><td>name</td><td>quantity</td><td>price</td><td></td></th>
-                    <tr><td>1</td><td>abc</td><td>53</td><td>13</td><td><button class="btn btn-warning">Update</button><button class="btn btn-danger">remove</button></td></tr>
-                    <tr><td>2</td><td>sad</td><td>22</td><td>13</td><td><button class="btn btn-warning">Update</button><button class="btn btn-danger">remove</button></td></tr>
-                    <tr><td>3</td><td>adsf</td><td>12</td><td>13</td><td><button class="btn btn-warning">Update</button><button class="btn btn-danger">remove</button></td></tr>
-                    <tr><td>4</td><td>dsg</td><td>13</td><td>13</td><td><button class="btn btn-warning">Update</button><button class="btn btn-danger">remove</button></td></tr>
-                    <tr><td>5</td><td>sdg</td><td>23</td><td>13</td><td><button class="btn btn-warning">Update</button><button class="btn btn-danger">remove</button></td></tr>
+                    <th><td>name</td><td>quantity</td><td>price</td><td>Status</td><td></td></th>
+                    <?php
+if (isset($_POST["iname"]) && isset($_POST["iprice"]) && isset($_POST["iqty"])) {
+    $query = "Select id,name,cost,quantity,minlevel from items";
+    $stmt = $conn->prepare($query);
+    if ($stmt->execute()) {
+        $stmt->bind_result($id, $name, $price, $qty, $mnlevel);
+        while ($stmt->fetch()) {
+            $status = "<i class='alert alert-success'>No issues</i>";
+            if ($mnlevel >= $qty) {
+                $status = "<i class='alert alert-danger'>Low quantity</i>";
+            }
+            echo "<tr><td>$id</td><td>$name</td><td>$qty</td><td>$price</td><td>$status</td><td><a class='btn btn-warning' href='./updateitem.php?id=$id' >Update</a><a class='btn btn-danger' href='./removeitem.php?id=$id'>Remove</a></td></tr>";
+        }
+
+    }
+}
+?>
                 </table>
             </div>
             <!-- /.col-lg-4 -->
@@ -27,4 +39,4 @@
 </div>
 
 <!-- /#wrapper -->
-<?php include 'footer.php' ?>
+<?php include 'footer.php'?>

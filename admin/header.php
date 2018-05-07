@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php include "dbconn.php";
+session_start();
+if(!isset($_SESSION['usr'])) {
+    header("Location:login.php");
+}?>
 <html lang="en">
 
     <head>
