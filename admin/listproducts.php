@@ -11,11 +11,18 @@
             <div class="col-lg-12">
                         <table class="table table-bordered table-striped">
                             <th><td>Name</td><td>Price</td><td>Type</td><td></td></th>
-                            <tr><td>1</td><td>abc</td><td>13</td><td>inhouse</td><td><a href="productDetails.php" class="btn btn-primary">Details</a><a href="updateproduct.php" class="btn btn-warning">Update</a><a href="#" class="btn btn-danger">remove</a></td></tr>
-                            <tr><td>2</td><td>sad</td><td>13</td><td>inhouse</td><td><a href="productDetails.php" class="btn btn-primary">Details</a><a href="updateproduct.php" class="btn btn-warning">Update</a><a href="#" class="btn btn-danger">remove</a></td></tr>
-                            <tr><td>3</td><td>adsf</td><td>13</td><td>outsource</td><td><a href="productDetails.php" class="btn btn-primary">Details</a><a href="updateproduct.php" class="btn btn-warning">Update</a><a href="#" class="btn btn-danger">remove</a></td></tr>
-                            <tr><td>4</td><td>dsg</td><td>13</td><td>inhouse</td><td><a href="productDetails.php" class="btn btn-primary">Details</a><a href="updateproduct.php" class="btn btn-warning">Update</a><a href="#" class="btn btn-danger">remove</a></td></tr>
-                            <tr><td>5</td><td>sdg</td><td>13</td><td>outsource</td><td><a href="productDetails.php" class="btn btn-primary">Details</a><a href="updateproduct.php" class="btn btn-warning">Update</a><a href="#" class="btn btn-danger">remove</a></td></tr>
+                            <?php
+$query = "Select id,name,cost,type from product;";
+$stmt = $conn->prepare($query);
+if ($stmt->execute()) {
+    $stmt->bind_result($id, $name, $price, $type);
+    while ($stmt->fetch()) {
+        echo " <tr><td>$id</td><td>$name</td><td>$price</td><td>" . $type == 0 ? "Outsource" : "Inhouse" . "</td><td><a href='productDetails.php?id=$id' class='btn btn-primary'>Details</a><a href='updateproduct.php?id=$id' class='btn btn-warning'>Update</a><a href='?id=$id' class='btn btn-danger'>remove</a></td></tr>";
+    }
+
+}
+?>
+
                         </table>
             </div>
             <!-- /.col-lg-4 -->
