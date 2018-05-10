@@ -17,7 +17,11 @@
                     <td></td>
                 </th></thead>
                 <?php
-                    $query = "Select id,name,cost,type from products;";
+                    $query = "Select id,name,cost,type from products ";
+                    if(isset($_GET["type"])){
+                        $query.= "where type = ".$_GET["type"];
+                    }
+                    // echo $query;
                     $stmt = $conn->prepare($query);
                     if ($stmt->execute()) {
                         $stmt->bind_result($id, $name, $price, $type);
