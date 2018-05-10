@@ -12,42 +12,35 @@ if (isset($_POST["iname"]) && isset($_POST["iprice"]) && isset($_POST["iqty"])) 
 }
 ?>
 
-            <div id="page-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Add Stock item</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><i class="fa fa-bell fa-fw"></i> Add Product</div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <form class="form-horizontal" method="post" action="additem.php">
-                                    <fieldset>
-<input type="text" placeholder="Enter item name" name="iname" required/>
-<input type="number" placeholder="Enter Unit price" name="iprice" required/>
-<input type="number" placeholder="quantity" name="iqty" required/>
-<input type="number" placeholder="min quantity" name="imnqty" required/>
-<button type="submit">Save</button>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-
-                        <!-- /.panel .chat-panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /#page-wrapper -->
-
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Add Stock item</h1>
         </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-7">
+            <form class="form form-horizontal" method="post" action="additem.php">
+                    <input type="text" class="form-control" placeholder="Enter item name" name="iname" required/>
+                    <br/>
+                    <input type="number" class="form-control" placeholder="Enter Unit price" name="iprice" required/>
+                    <br/>
+                    <input type="number" class="form-control" placeholder="quantity" name="iqty" required/>
+                    <br/>
+                    <input type="number" class="form-control" placeholder="min quantity" name="imnqty" required/>
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-        <!-- /#wrapper -->
-        <?php include 'footer.php'?>
+</div>
+
+<!-- /#wrapper -->
+<?php include 'footer.php'?>

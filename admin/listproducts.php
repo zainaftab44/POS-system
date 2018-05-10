@@ -10,19 +10,24 @@
     <div class="row">
         <div class="col-lg-12">
             <table class="table table-bordered table-striped">
-                <th>
+                <thead><th>
                     <td>Name</td>
                     <td>Price</td>
                     <td>Type</td>
                     <td></td>
-                </th>
+                </th></thead>
                 <?php
-                    $query = "Select id,name,cost,type from product;";
+                    $query = "Select id,name,cost,type from products;";
                     $stmt = $conn->prepare($query);
                     if ($stmt->execute()) {
                         $stmt->bind_result($id, $name, $price, $type);
                         while ($stmt->fetch()) {
-                            echo " <tr><td>$id</td><td>$name</td><td>$price</td><td>" . $type == 0 ? "Outsource" : "Inhouse" . "</td><td><a href='productDetails.php?id=$id' class='btn btn-primary'>Details</a><a href='?id=$id' class='btn btn-danger'>remove</a></td></tr>";
+                           
+                            if($type == 0)
+                                $type="Outsource"; 
+                                else
+                                $type="Inhouse";
+                            echo " <tr><td>$id</td><td>$name</td><td>$price</td><td>$type</td><td><a href='productDetails.php?id=$id' class='btn btn-primary'>Details</a><a href='?id=$id' class='btn btn-danger'>remove</a></td></tr>";
                         }
 
                     }

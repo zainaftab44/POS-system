@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <?php
+include ("./dbconn.php");
+    
 session_start();
 if (isset($_SESSION["usr"])) {
     session_abort();
     session_destroy();
     session_start();
+}
+$status = "<p class='alert alert-warning'>Unable to login. Try again</p>";
+if (isset($_POST["email"]) && $_POST["password"]) {
+    $query = "Select id from users where email=? and password=?";
+    $stmt = $conn->prepare($query);
+    echo $query;
+    $stmt->bind_param("ss", $_POST["email"], $_POST["password"]);
+    if ($stmt->execute()) {
+        $stmt->bind_result($id);
+        if ($stmt->fetch()) {
+            $status = "<p class='alert alert-success'>login successful</p>";
+            $_SESSION["usr"]=$id;
+            header("Location:index.php");
+        }
+        else{
+            $status = "<p class='alert alert-danger'>Username or password incorrect</p>";
+        }
+
+    }
 }
 ?>
 <html lang="en">
@@ -50,7 +71,7 @@ if (isset($_SESSION["usr"])) {
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
@@ -58,13 +79,14 @@ if (isset($_SESSION["usr"])) {
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
-                                <div class="checkbox">
+                                <!-- <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
+                                   </label>
+                                </div> -->
+                                <?php echo $status;?>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
                     </div>
@@ -80,7 +102,7 @@ if (isset($_SESSION["usr"])) {
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../vendor/metis Menu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
