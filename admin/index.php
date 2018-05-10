@@ -19,11 +19,11 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">26</div>
-                                        <div>New Orders!</div>
+                                        <div>Orders!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="billslist.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -41,11 +41,11 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">12</div>
-                                        <div>New Customers!</div>
+                                        <div>inhouse products!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="listproducts.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="billslist.php?deliveries=today">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="billslist.php?status=pending">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -1,15 +1,38 @@
-<?php include "header.php";?>
 <?php
-    $query = "Select id,name,cost from products";
+include "header.php";
+// error_reporting(E_ALL);
+if (isset($_POST["name"]) && isset($_POST["payed"]) && isset($_POST["total"]) && isset($_POST["phone"]) && isset($_POST["fdate"]) && isset($_POST["tdate"])) {
+    $query = "Insert into invoice (payed,total,name,phone,due_date,st_date) values (?,?,?,?,?)";
     $stmt = $conn->prepare($query);
+    $stmt->bind_param("iissss", $_POST["payed"],$_POST["total"], $_POST["name"], $_POST["phone"], $_POST["tdate"], $_POST["fdate"]);
+    echo mysqli_error($conn);
+
     $stmt->execute();
-        $stmt->bind_result($id, $name, $price);
-        $options="";
-        $arr=array();
-        while($stmt->fetch()){
-            $options.="<option value=\"$id\">$name</option>";
-            $arr["$id"]=$price;
+    $bid = $conn->insert_id;
+    $stmt->close();
+    
+    if (isset($_POST["iname"])) {
+        for ($i = 0; $i < sizeof($_POST["iname"]); $i++) {
+            $stmt = $conn->prepare("Insert into invoiceproducts (invoiceid,productid,quantity,unitprice) values(?,?,?,?)");
+            // echo "Insert into invoiceproducts (invoiceid,productid,quantity,unitprice) values(?,?,?,?)";
+            $stmt->bind_param("iiii", $bid, $_POST["iname"][$i], $_POST["quantity"][$i], $_POST["price"][$i]);
+            $stmt->execute();
+            // echo mysqli_error($conn);
+            $stmt->close();
         }
+    }
+} 
+
+$query = "Select id,name,cost from products";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$stmt->bind_result($id, $name, $price);
+$options = "";
+$arr = array();
+while ($stmt->fetch()) {
+    $options .= "<option value=\"$id\">$name</option>";
+    $arr["$id"] = $price;
+}
 ?>
     <script>
         var prices = <?php echo json_encode($arr); ?>;
@@ -32,8 +55,8 @@
                var sub=document.getElementById("sub" + eles[i].id.slice(-1));
                  total +=parseInt(sub.innerHTML)
             }
-            var tot = document.getElementById("total");
-tot.innerHTML=total;
+            var tot = document.getElementById("tota");
+tot.value=total;
 
         }
     </script>
@@ -46,8 +69,7 @@ tot.innerHTML=total;
         </div>
         <!-- /.row -->
         <div class="row">
-            <form class="form-horizontal">
-                <fieldset>
+            <form class="form-horizontal" method="post" action="addbill.php">
                     <div class="row">
                         <div class=" col-md-7 form-group pull-left">
                             <label class="col-md-4 control-label " for="name">Name</label>
@@ -77,7 +99,7 @@ tot.innerHTML=total;
                     <table class="table table-bordered table-bordered table-striped">
                         <thead>
                             <th>
-                                
+
                                 <td>
                                     Product
                                 </td>
@@ -116,13 +138,19 @@ tot.innerHTML=total;
                             <tr>
                                 <td>Total</td>
                                 <td colspan="4">
-                                    <p id="total" class="pull-right">0.00</p>
+                                    <input name="total" id="tota" type="number" onchange="function(e){e.preventDefault();}" class="form-control btn-btn-default pull-right" style="width:10%" value="00.0"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>payed</td>
+                                <td colspan="4">
+                                    <input name="payed" id="tota" type="number" class="form-control btn-btn-default pull-right" value="00.0"/>
                                 </td>
                             </tr>
                         </tfoot>
                     </table>
                     <!-- <input type="button" class="btn btn-info" id="add-more" value="+" /> -->
-                </fieldset>
+                <button class="btn btn-primary" type="submit">Submit</button>
             </form>
 
 
@@ -140,7 +168,7 @@ tot.innerHTML=total;
                 var addto = "#products-table0" // + (next);
                 var addRemove = "#products-table" + (next);
                 next = next + 1;
-                var newIn = ' <tr id="products-table' + next + '"><td><button id="remove' + next + '" class="btn btn-danger remove-me">X</button></td><td><select name="iname[]" id="iname' + next + '" onchange="updprice(' + next + ',this.value)" class="form-control"><?php echo $options; ?></select></td><td><input  type="number" value="0" id="iqty' + next + '" onchange="updateprice(' + next + ')"  name="quantity[]" placeholder="Quantity" class="form-control input-md" /></td><td><input type="number"  id="iprice' + next + '" disabled  onchange="updateprice(' + next + ')"  class="form-control input-md" name="price[]" placeholder="Price" /></td><td><p id="sub' + next + '">00.00</p></td></tr>';
+                var newIn = ' <tr id="products-table' + next + '"><td><button id="remove' + next + '" class="btn btn-danger remove-me">X</button></td><td><select name="iname[]" id="iname' + next + '" onchange="updprice(' + next + ',this.value)" class="form-control"><?php echo $options; ?></select></td><td><input  type="number" value="0" id="iqty' + next + '" onchange="updateprice(' + next + ')"  name="quantity[]" placeholder="Quantity" class="form-control input-md" /></td><td><input type="number"  id="iprice' + next + '"   onchange="updateprice(' + next + ')"  class="form-control input-md" name="price[]" placeholder="Price" /></td><td><p id="sub' + next + '">00.00</p></td></tr>';
                 //<tr id="stock-table' + next + '"><td> <select  class="form-control" name="iid[]"><?php echo $options ?></select></td><td> <input  class="form-control" type="number" placeholder="quantity" name="iqty[]"  required> </td><td><button id="remove' + (next) + '" class="btn btn-danger remove-me" >X</button></td></tr>'; //<input type="button" class="btn btn-info" id="add-more'+(next)+'" value="+"></td></tr>';
                 var newInput = $(newIn);
                 // var add=$("#add-more"+(next-1))

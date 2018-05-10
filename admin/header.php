@@ -74,10 +74,6 @@ if(!isset($_SESSION['usr'])) {
                             <li>
                                 <a href="billslist.php"><i class="fa fa-table fa-fw"></i>List Orders</a>
                             </li>
-
-                            <li>
-                                <a href="calendar.php"><i class="fa fa-table fa-fw"></i>Orders Calendar</a>
-                            </li>
                             <li>
                                 <a href="listitems.php"><i class="fa fa-edit fa-fw">List Stock</i> </a>
                             </li>
@@ -91,9 +87,9 @@ if(!isset($_SESSION['usr'])) {
                                 <a href="listproducts.php"><i class="fa fa-sitemap fa-fw"></i> List Products</a>
                             </li>
 
-                            <li>
+                            <!-- <li>
                                 <a href="salesreports.php"><i class="fa fa-sitemap fa-fw"></i> Reports</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
 

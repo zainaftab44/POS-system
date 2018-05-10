@@ -16,7 +16,7 @@ if (isset($_POST['pname']) && isset($_POST['pprice']) && isset($_POST['ptype']))
         $stmt = $conn->prepare($query);
         $stmt->bind_param("siis", $_POST['pname'], $_POST['pprice'], $_POST['ptype'], $_POST['pdesc']);
         $rv = $stmt->execute();
-        echo mysqli_error($conn);
+        //echo mysqli_error($conn);
         if ($rv) {
             $pid = $conn->insert_id;
             $stmt->close();
