@@ -13,7 +13,7 @@ if (isset($_POST["email"]) && $_POST["password"]) {
     $query = "Select id from users where email=? and password=?";
     $stmt = $conn->prepare($query);
     echo $query;
-    $stmt->bind_param("ss", $_POST["email"], $_POST["password"]);
+    $stmt->bind_param("ss", $_POST["email"],md5( $_POST["password"]));
     if ($stmt->execute()) {
         $stmt->bind_result($id);
         if ($stmt->fetch()) {

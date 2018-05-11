@@ -1,4 +1,25 @@
-<?php include "header.php";?>
+<?php include "header.php";
+
+if (isset($_POST["rempayment"]) && isset($_GET["id"])) {
+    $stmt = $conn->prepare("update invoice set payed=payed+? where id=?");
+    $stmt->bind_param("ii", $_POST["rempayment"], $_GET["id"]);
+    if ($stmt->execute()) {
+        $stmt->close();
+        $stmt = $conn->prepare("Select payed,total from invoice where id=?");
+        $stmt->bind_param("i", $_GET["id"]);
+        $stmt->execute();
+        $stmt->bind_result($pyd, $tot);
+        $stmt->fetch();
+        $stmt->close();        
+        if ($tot - $pyd <= 0) {
+            $stmt = $conn->prepare("update invoice set status=1 where id=?");
+            $stmt->bind_param("i", $_GET["id"]);
+            $stmt->execute();
+            $stmt->close();
+        }
+    }
+}
+?>
 <script type='text/javascript' src='../js/example.js'></script>
 
 <div id="abcdefg">
@@ -14,59 +35,59 @@
             font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
             color: #555;
         }
-        
+
         .invoice-box table {
             width: 100%;
             line-height: inherit;
             text-align: left;
         }
-        
+
         .invoice-box table td {
             padding: 5px;
             vertical-align: top;
         }
-        
+
         .invoice-box table tr td:nth-child(2) {
             text-align: right;
         }
-        
+
         .invoice-box table tr.top table td {
             padding-bottom: 20px;
         }
-        
+
         .invoice-box table tr.top table td.title {
             font-size: 45px;
             line-height: 45px;
             color: #333;
         }
-        
+
         .invoice-box table tr.information table td {
             padding-bottom: 40px;
         }
-        
+
         .invoice-box table tr.heading td {
             background: #eee;
             border-bottom: 1px solid #ddd;
             font-weight: bold;
         }
-        
+
         .invoice-box table tr.details td {
             padding-bottom: 20px;
         }
-        
+
         .invoice-box table tr.item td {
             border-bottom: 1px solid #eee;
         }
-        
+
         .invoice-box table tr.item.last td {
             border-bottom: none;
         }
-        
+
         .invoice-box table tr.total td:nth-child(2) {
             border-top: 2px solid #eee;
             font-weight: bold;
         }
-        
+
         @media only screen and (max-width: 600px) {
             .invoice-box table tr.top table td {
                 width: 100%;
@@ -79,23 +100,23 @@
                 text-align: center;
             }
         }
-        
-        @media print {
-            #abcdefg {
-                background-color: black;
+        @media print{
+            #abcdefg{
+                background-color:black;
             }
+
         }
         /** RTL **/
-        
+
         .rtl {
             direction: rtl;
             font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
         }
-        
+
         .rtl table {
             text-align: right;
         }
-        
+
         .rtl table tr td:nth-child(2) {
             text-align: left;
         }
@@ -103,7 +124,7 @@
     <?php
 
 $query = "Select name,total,payed,phone,status,due_date,st_date from invoice where id=?";
-$id = $_POST["id"];
+$id = $_GET["id"];
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -112,10 +133,6 @@ $stmt->fetch();
 $stmt->close();
 ?>
         <div id="page-wrap">
-            <button class="btn btn-primary hidden-print pull-right btn-lg" onclick="PrintPanel()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-
-            <a class="btn btn-primary pull-right btn-lg" href="./clearbill.php?id=<?php echo $id; ?>">Clear bill</a>
-
             <div class="invoice-box">
                 <table cellpadding="0" cellspacing="0">
                     <tr class="top">
@@ -192,7 +209,7 @@ $stmt->close();
                     <?php
 
 $query = "Select p.name,ip.unitprice,ip.quantity from products p , invoiceproducts ip where ip.invoiceid=? And ip.productid=p.id";
-$id = $_POST["id"];
+$id = $_GET["id"];
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -219,13 +236,20 @@ while ($stmt->fetch()) {
                             <td></td>
                             <td colspan="3">
                                 <?php
+
 if ($payed > $total) {
     echo "Change: Rs." . ($payed - $total);
 } else {
-    echo "Remaining: Rs." . ($total - $payed);
+    if ($status == 0) {
+        echo "<form method='post' action='./payrem.php?id=" . $_GET["id"] . "'><input type='hidden' value='" . $total . "' name='total'/>Remaining: Rs.<input type='number' name='rempayment' class='input-sm' max='" . ($total - $payed) . "' min='0' value='" . ($total - $payed) . "' required/><input type='submit' value='pay' class='btn btn-warning' ></form>";
+    } else if ($status == 1) {
+        echo "Remaining: Rs." . ($total - $payed) . " Cleared";
+    }
+
 }
 ?>
-                            </td>
+
+                        </td>
                         </tr>
                 </table>
                 <br/>
@@ -234,60 +258,7 @@ if ($payed > $total) {
             </div>
         </div>
 </div>
-<style>
-    #bg-text {
-        color: lightgrey;
-        font-size: 120px;
-        transform: rotate(300deg);
-        -webkit-transform: rotate(300deg);
-    }
-    
-    #background {
-        position: absolute;
-        z-index: 0;
-        background: transparent;
-        display: block;
-        min-height: 50%;
-        min-width: 70%;
-        color: yellow;
-        left: 30%
-    }
-</style>
-<script>
-    function myFunction() {
-        window.print();
-    }
-
-    function PrintPanel() {
-        var panel = document.getElementById("abcdefg");
-        var printWindow = window.open('', '', 'height=auto,width=auto,scrollbars=1');
-
-        printWindow.document.write('<html><head><title></title></head>');
-        printWindow.document.write('<body>');
-        var pHeight = panel.clientHeight;
-        var windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-        var noOfWatermark = pHeight / windowHeight;
-        // for(var i=0;i<noOfWatermark;i++){
-        // 		printWindow.document.write('<div style="opacity: 0.5;color: BLACK;position: absolute;top: '+windowHeight*i+'px;right: 0;">Sample Watermark</div>');
-        // 	}
-        printWindow.document.write('<style>#bg-text{color:#8c292966;font-size:120px;transform:rotate(300deg);-webkit-transform:rotate(300deg)}#background{position:absolute;z-index:0;background:transparent;display:block;min-height:50%;min-width:70%;color:#8c292966;left:20%;top:20%} @media print{#bg-text{color:#8c292966;font-size:120px;transform:rotate(300deg);-webkit-transform:rotate(300deg)}#background{position:absolute;z-index:0;background:transparent;display:block;min-height:50%;min-width:70%;color:#8c292966;left:20%;top:20%}}</style>')
-        <?php if ($status == 1) {?>
-        printWindow.document.write('<div id="background"><p id="bg-text">Paid</p></div>');
-        <?php } else {?>
-        printWindow.document.write('<div id="background"><p id="bg-text">Remaining</p></div>');
-        <?php }?>
-        printWindow.document.write(panel.innerHTML);
-        // window.setTimeout("javascript:setPortrait();", 500);
-        printWindow.document.write('</body></html>');
-        printWindow.document.close();
-
-
-        setTimeout(function() {
-            printWindow.print();
-        }, 500);
-        return false;
-    }
-</script>
+<a class="btn btn-primary" href="./clearbill.php?id=<?php echo $id;?>">Clear bill</a>
 </div>
 
 <?php include "footer.php";?>

@@ -106,6 +106,10 @@ if(!isset($_SESSION['usr'])) {
                             <li>
                                 <a href="listproducts.php"><i class="fa fa-sitemap fa-fw"></i> List Products</a>
                             </li>
+                            <li>
+                                <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+
 
                             <!-- <li>
                                 <a href="salesreports.php"><i class="fa fa-sitemap fa-fw"></i> Reports</a>

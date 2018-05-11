@@ -1,5 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION["usr"]));
+    header("Location:login.php");
+
 include "dbconn.php";
+
 if(!isset($_GET["id"]))
     header("Location:billslist.php");
 
