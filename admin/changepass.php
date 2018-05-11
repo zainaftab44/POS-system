@@ -15,7 +15,7 @@ if (isset($_POST["email"])) {
                 </div>
                 <div class="panel-body">
                     <form role="form" method="post">
-                        <fieldset>
+                        <fieldset> 
                             <div class="form-group">
                                 <input class="form-control" placeholder="Enter new password" name="email" type="password" autofocus>
                             </div>
