@@ -23,6 +23,7 @@
                             <table class="table table-bordered table-striped">
                                 <thead><tr><th>Name</th><th>Price</th><th>Payed</th><th>Remaining</th><th>Payable Date</th><th>Status</th><th></th></tr></thead>
                                 <?php
+                                $rem;
 if (isset($_POST["type"])) {
     $query = "Select i.id,i.name,i.total,i.payed,i.st_date,i.status from invoice i, invoiceproducts ip, products p where ip.invoiceid=i.id and ip.productid=p.id and p.type=? ";
     $stmt = $conn->prepare($query);
@@ -33,17 +34,18 @@ if (isset($_POST["type"])) {
         $s = "";
         $d = "";
         if ($status == 0) {
-            $s = "Remaining";
+            $s = "<a href='payrem.php'>Pay Remaining</a>";
             $d = "<a class='btn btn-primary' href='clearbill.php?id=$id'>Clear Bill</a>";
         } else {
             $s = "Cleared";
-            $d = "Already Cleared";
+            $d = "<p class='alert alert-success'> Cleared</p>";
         }
+        $rem=($tot - $payd) ;
         echo "<tr>
         <td>$name</td>
         <td>$tot</td>
         <td>$payd</td>
-        <td>" . ($tot - $payd) . "</td>
+        <td>$rem</td>
         <td>$tdate</td>
         <td>$s</td>
         <td>$d</td></tr>";
@@ -62,17 +64,18 @@ if (isset($_POST["type"])) {
         $s = "";
         $d = "";
         if ($status == 0) {
-            $s = "Remaining";
+            $s = "<a href='payrem.php'>Pay Remaining</a>";
             $d = "<a class='btn btn-primary' href='clearbill.php?id=$id'>Clear Bill</a>";
         } else {
             $s = "Cleared";
-            $d = "Already Cleared";
+            $d = "<p class='alert alert-success'> Cleared</p>";
         }
+        $rem=($tot - $payd) ;
         echo "<tr>
         <td>$name</td>
         <td>$tot</td>
         <td>$payd</td>
-        <td>" . ($tot - $payd) . "</td>
+        <td>$rem</td>
         <td>$tdate</td>
         <td>$s</td>
         <td>$d</td></tr>";
@@ -91,5 +94,6 @@ if (isset($_POST["type"])) {
 
         </div>
 
-        <!-- /#wrapper -->
+
+<!-- /#wrapper -->
         <?php include 'footer.php'?>

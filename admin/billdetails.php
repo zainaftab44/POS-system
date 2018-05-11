@@ -3,117 +3,89 @@
 	<link rel='stylesheet' type='text/css' href='../css/print.css' media="print" />
 	<script type='text/javascript' src='../js/example.js'></script>
 
+
 	<div id="page-wrap">
 
-		<textarea id="header">INVOICE</textarea>
-		
-		<div id="identity">
-		
-            <textarea id="address" disabled>customer name
-Phone: (555) 555-5555
-Adress: adsogjaosdgo</textarea>
+<!-- <div class="container"> -->
+    <!-- <div class="row"> -->
+        <div class="col-xs-12">
+    		<div class="invoice-title">
+    			<h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+    		</div>
+    		<hr>
+    		<div class="row">
+    			<div class="col-xs-6">
+    				<address>
+    				<strong>Billed To:</strong><br>
+						John Smith<br>
+						0321-1234567
+    				</address>
+    			</div>
+    			<div class="col-xs-6 text-right">
+						<address>
+							<strong>Order Date:</strong><br>
+							March 7, 2014<br><br>
+						</address>
+    			</div>
+    		</div>
+    	</div>
+    <!-- </div> -->
+  
+    <!-- <div class="row"> -->
+    	<div class="col-md-12">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<h3 class="panel-title"><strong>Order summary</strong></h3>
+    			</div>
+    			<div class="panel-body">
+    				<div class="table-responsive">
+    					<table class="table table-hover table-striped table-bordered table-condensed">
+    						<thead>
+                                <tr>
+        							<td><strong>Item</strong></td>
+        							<td class="text-center"><strong>Price</strong></td>
+        							<td class="text-center"><strong>Quantity</strong></td>
+        							<td class="text-right"><strong>Totals</strong></td>
+                                </tr>
+    						</thead>
+    						<tbody>
+    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
+    							<tr>
+    								<td>BS-200</td>
+    								<td class="text-center">$10.99</td>
+    								<td class="text-center">1</td>
+    								<td class="text-right">$10.99</td>
+    							</tr>
+                                <tr>
+        							<td>BS-400</td>
+    								<td class="text-center">$20.00</td>
+    								<td class="text-center">3</td>
+    								<td class="text-right">$60.00</td>
+    							</tr>
+                                <tr>
+            						<td>BS-1000</td>
+    								<td class="text-center">$600.00</td>
+    								<td class="text-center">1</td>
+    								<td class="text-right">$600.00</td>
+								</tr>
+    						</tbody>
+									<tfoot>
+									<tr>
+										<td class="no-line"></td>
+										<td class="no-line"></td>
+										<td class="no-line text-center"><strong>Total</strong></td>
+										<td class="no-line text-right">$685.99</td>
+									</tr>
+	</tfoot>
+    					</table>
+    				</div>
+    			</div>
+    		<!-- </div> -->
+    	<!-- </div>
+    	</div> -->
+    </div>
+</div>
 
-            <div id="logo">
-
-              <!-- <div id="logoctr">
-                <a href="javascript:;" id="change-logo" title="Change logo">Change Logo</a>
-                <a href="javascript:;" id="save-logo" title="Save changes">Save</a>
-                |
-                <a href="javascript:;" id="delete-logo" title="Delete logo">Delete Logo</a>
-                <a href="javascript:;" id="cancel-logo" title="Cancel changes">Cancel</a>
-              </div> -->
-
-              <div id="logohelp">
-                <input id="imageloc"  disabled class="disabled" type="text" size="50" value="" /><br />
-                (max width: 540px, max height: 100px)
-              </div>
-              <img id="image" src="../images/logo.png"  disabled class="disabled" alt="logo" />
-            </div>
-		
-		</div>
-		
-		<div style="clear:both"></div>
-		
-		<div id="customer">
-
-            <textarea id="customer-title"  disabled class="disabled"> customer name</textarea>
-
-            <table id="meta">
-                <tr>
-                    <td class="meta-head">Invoice #</td>
-                    <td><textarea  disabled class="disabled">000123</textarea></td>
-                </tr>
-                <tr>
-
-                    <td class="meta-head">Date</td>
-                    <td><textarea id="date" disabled class="disabled">December 15, 2017</textarea></td>
-                </tr>
-                <tr>
-                    <td class="meta-head">Amount Due</td>
-                    <td><div class="due">875.00</div></td>
-                </tr>
-
-            </table>
-		
-		</div>
-		
-		<table id="items">
-		
-		  <tr>
-		      <th>Item</th>
-		      <th>Unit Cost</th>
-		      <th>Quantity</th>
-		      <th>Price</th>
-		  </tr>
-		  
-		  <tr class="item-row">
-		      <td class="item-name"><div class="delete-wpr"><textarea>flex</textarea></div></td>
-		      <td><textarea class="cost">650.00</textarea></td>
-		      <td><textarea class="qty">1</textarea></td>
-		      <td><span class="price">650.00</span></td>
-		  </tr>
-		  
-		  <tr class="item-row">
-		      <td class="item-name"><div class="delete-wpr"><textarea >standies</textarea></div></td>
-		      <td><textarea class="cost">75.00</textarea></td>
-		      <td><textarea class="qty">3</textarea></td>
-		      <td><span class="price">225.00</span></td>
-		  </tr>
-<!-- 		  
-		  <tr id="hiderow">
-		    <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
-		  </tr> -->
-		  
-		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Subtotal</td>
-		      <td class="total-value"><div id="subtotal">875.00</div></td>
-		  </tr>
-		  <tr>
-
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Total</td>
-		      <td class="total-value"><div id="total">875.00</div></td>
-		  </tr>
-		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Amount Paid</td>
-
-		      <td class="total-value"><textarea id="paid">300.00</textarea></td>
-		  </tr>
-		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line balance">Balance Due</td>
-		      <td class="total-value balance"><div class="due">875.00</div></td>
-		  </tr>
-		
-		</table>
-		
-		<!-- <div id="terms">
-		  <h5>Terms</h5>
-		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
-		</div> -->
-	
 <button class="btn btn-primary btn-lg">Clear bill</button>
 	</div>
 
