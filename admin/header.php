@@ -45,7 +45,27 @@ if(!isset($_SESSION['usr'])) {
         <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'><link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-     </head>
+<script>
+    $(document).ready(function() {
+        $("#myTable").tablesorter();
+    });
+</script>
+<style>
+        th.headerSortUp {
+            background-image: url('../images/asc.gif');
+            /* background-color: #3399FF;  */
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+
+        th.headerSortDown {
+            background-image: url('../images/desc.gif');
+            /* background-color: #3399FF;  */
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+    </style>
+      </head>
 
     <body>
         <div id="wrapper">

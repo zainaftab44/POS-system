@@ -9,18 +9,22 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <table class="table table-bordered table-striped">
+            <table id="myTable" class="table table-bordered table-striped">
                 <thead>
-                    <th>
-                        <td>name</td>
-                        <td>quantity</td>
-                        <td>price</td>
-                        <td>Status</td>
-                        <td></td>
-                    </th>
+                    <tr>
+                    <th>Id</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <?php
     $query = "Select id,name,cost,quantity,minlevel from items";
+    if(isset($_GET["status"])){
+        $query .= "  where quantity<minlevel";
+    }
     $stmt = $conn->prepare($query);
     if ($stmt->execute()) {
         $stmt->bind_result($id, $name, $price, $qty, $mnlevel);

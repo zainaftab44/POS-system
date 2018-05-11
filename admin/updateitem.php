@@ -36,15 +36,35 @@ if (isset($_GET["id"])) {
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-7">
-            <form class="form form-horizontal" method="post" action="./updateitem.php?id=<?php echo $_GET["id"]?>">
-                <input type="text" class="form-control" placeholder="Item Name" name="iname" value="<?php echo $name;?>" required/>
-                <br/>
-                <input type="number" class="form-control" placeholder="Unit Price" name="iprice"  value="<?php echo $price;?>"  required/>
-                <br/>
-                <input type="number" class="form-control" placeholder="Quantity" name="iqty" value="<?php echo $qty;?>"  required/>
-                <br/>
-                <input type="number" class="form-control" placeholder="Min Quantity" name="imnqty" value="<?php echo $mnlevel;?>"  required/>
-                <br/>
+            <form class="form form-horizontal" method="post" action="./updateitem.php?id=<?php echo $_GET[" id "]?>">
+                <div class="control-group">
+                    <!-- Username -->
+                    <label class="control-label" for="iname">Item Name</label>
+                    <div class="controls">
+                        <input type="text" class="form-control" placeholder="Item Name" id="iname" name="iname" value="<?php echo $name;?>" required/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="iprice">Price</label>
+                    <div class="controls">
+                        <input type="number" min="0" class="form-control input-lg" placeholder="Unit Price" id="iprice" name="iprice" value="<?php echo $price;?>" required/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="iqty">Quantity</label>
+                    <div class="controls">
+                        <input type="number" class="form-control" min="0" placeholder="Quantity" id="iqty" name="iqty" value="<?php echo $qty;?>" required/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="imnqty">Lower Boundary</label>
+                    <div class="controls">
+                        <input type="number" class="form-control" placeholder="Min Quantity" id="imnqty" name="imnqty" min="0" value="<?php echo $mnlevel;?>" required/>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>

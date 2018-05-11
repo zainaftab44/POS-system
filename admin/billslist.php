@@ -1,25 +1,5 @@
 <?php include 'header.php';?>
 
-<script>
-    $(document).ready(function() {
-        $("#myTable").tablesorter();
-    });
-</script>
-<style>
-        th.headerSortUp {
-            background-image: url('../images/asc.gif');
-            /* background-color: #3399FF;  */
-            background-repeat: no-repeat;
-            background-position: center right;
-        }
-
-        th.headerSortDown {
-            background-image: url('../images/desc.gif');
-            /* background-color: #3399FF;  */
-            background-repeat: no-repeat;
-            background-position: center right;
-        }
-    </style>
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
@@ -73,7 +53,7 @@ if (isset($_POST["type"])) {
 } else {
     $query = "Select id,name,total,payed,st_date,status from invoice ";
     if (isset($_GET["deliveries"])) {
-        $query .= " where st_date= '" . date('Y-m-d') . "'";
+        $query .= " where due_date= '" . date('Y-m-d') . "'";
     } else if (isset($_GET["status"])) {
         $query .= " where status = 0 ";
     }

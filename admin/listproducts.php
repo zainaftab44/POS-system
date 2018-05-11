@@ -7,7 +7,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <style>
+    <!-- <style>
         th.headerSortUp {
             background-image: url('../images/asc.gif');
             /* background-color: #3399FF;  */
@@ -21,7 +21,7 @@
             background-repeat: no-repeat;
             background-position: center right;
         }
-    </style>
+    </style> -->
     <div class="row">
         <div class="col-lg-12">
             <table id="myTable" class="table table-bordered table-striped">
@@ -66,10 +66,10 @@ if ($stmt->execute()) {
     <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
-<script>
+<!-- <script>
     $(document).ready(function() {
         $("#myTable").tablesorter();
     });
-</script>
+</script> -->
 <!-- /#wrapper -->
 <?php include 'footer.php'?>

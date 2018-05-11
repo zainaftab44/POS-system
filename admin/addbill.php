@@ -53,6 +53,8 @@ while ($stmt->fetch()) {
     $options .= "<option value='$id'>$name</option>";
     $arr["$id"] = $price;
 }
+$stmt->close();
+
 ?>
     <script>
         var prices = <?php echo json_encode($arr); ?>;
