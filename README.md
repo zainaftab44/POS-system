@@ -15,6 +15,9 @@ Have a bug or an issue with this System? [Open a new issue](https://github.com/z
 ## POS developer
 This system is developed by [Zain Aftab](https://www.github.com/zainaftab44). Want a customized features according to your requirements or want a new system developed... Contact me at [zainaftab44](mailto:zainaftab44@gmail.com)
 
-## Copyright and License
+## POS-system Copyright
+Copyright 2018 Zain Aftab [Skynetlabz](https://www.facebook.com/skynetlabz)
+
+### SB Admin2 -> Copyright and License
 
 Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2/blob/gh-pages/LICENSE) license.
