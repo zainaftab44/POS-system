@@ -1,92 +1,292 @@
-<?php include "header.php"; ?>
-	<link rel='stylesheet' type='text/css' href='../css/style.css' />
-	<link rel='stylesheet' type='text/css' href='../css/print.css' media="print" />
-	<script type='text/javascript' src='../js/example.js'></script>
+<?php include "header.php";?>
+<script type='text/javascript' src='../js/example.js'></script>
+<div id="abcdefg">
+    <style>
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
 
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+        }
 
-	<div id="page-wrap">
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
 
-<!-- <div class="container"> -->
-    <!-- <div class="row"> -->
-        <div class="col-xs-12">
-    		<div class="invoice-title">
-    			<h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
-    		</div>
-    		<hr>
-    		<div class="row">
-    			<div class="col-xs-6">
-    				<address>
-    				<strong>Billed To:</strong><br>
-						John Smith<br>
-						0321-1234567
-    				</address>
-    			</div>
-    			<div class="col-xs-6 text-right">
-						<address>
-							<strong>Order Date:</strong><br>
-							March 7, 2014<br><br>
-						</address>
-    			</div>
-    		</div>
-    	</div>
-    <!-- </div> -->
-  
-    <!-- <div class="row"> -->
-    	<div class="col-md-12">
-    		<div class="panel panel-default">
-    			<div class="panel-heading">
-    				<h3 class="panel-title"><strong>Order summary</strong></h3>
-    			</div>
-    			<div class="panel-body">
-    				<div class="table-responsive">
-    					<table class="table table-hover table-striped table-bordered table-condensed">
-    						<thead>
+        .invoice-box table tr td:nth-child(2) {
+            text-align: right;
+        }
+
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+        }
+
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+
+        .invoice-box table tr.total td:nth-child(2) {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+        @media print{
+            #abcdefg{
+                background-color:black;
+            }
+
+        }
+        /** RTL **/
+
+        .rtl {
+            direction: rtl;
+            font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        }
+
+        .rtl table {
+            text-align: right;
+        }
+
+        .rtl table tr td:nth-child(2) {
+            text-align: left;
+        }
+    </style>
+    <?php
+
+$query = "Select name,total,payed,phone,status,due_date,st_date from invoice where id=?";
+$id = $_POST["id"];
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$stmt->bind_result($name, $total, $payed, $phone, $status, $ddate, $sdate);
+$stmt->fetch();
+$stmt->close();
+?>
+        <div id="page-wrap">
+            <div class="invoice-box">
+                <table cellpadding="0" cellspacing="0">
+                    <tr class="top">
+                        <td colspan="4">
+                            <table>
                                 <tr>
-        							<td><strong>Item</strong></td>
-        							<td class="text-center"><strong>Price</strong></td>
-        							<td class="text-center"><strong>Quantity</strong></td>
-        							<td class="text-right"><strong>Totals</strong></td>
+                                    <td class="title">
+                                        <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;">
+                                    </td>
+
+                                    <td>
+                                        Invoice #:
+                                        <?php echo $id; ?><br> Created:
+                                        <?php echo $sdate; ?><br> Due:
+                                        <?php echo $ddate; ?>
+                                    </td>
                                 </tr>
-    						</thead>
-    						<tbody>
-    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-    							<tr>
-    								<td>BS-200</td>
-    								<td class="text-center">$10.99</td>
-    								<td class="text-center">1</td>
-    								<td class="text-right">$10.99</td>
-    							</tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="information">
+                        <td colspan="4">
+                            <table>
                                 <tr>
-        							<td>BS-400</td>
-    								<td class="text-center">$20.00</td>
-    								<td class="text-center">3</td>
-    								<td class="text-right">$60.00</td>
-    							</tr>
-                                <tr>
-            						<td>BS-1000</td>
-    								<td class="text-center">$600.00</td>
-    								<td class="text-center">1</td>
-    								<td class="text-right">$600.00</td>
-								</tr>
-    						</tbody>
-									<tfoot>
-									<tr>
-										<td class="no-line"></td>
-										<td class="no-line"></td>
-										<td class="no-line text-center"><strong>Total</strong></td>
-										<td class="no-line text-right">$685.99</td>
-									</tr>
-	</tfoot>
-    					</table>
-    				</div>
-    			</div>
-    		<!-- </div> -->
-    	<!-- </div>
-    	</div> -->
-    </div>
+                                    <td>
+                                        MA Printer.<br> 12345 Sunny Road
+                                        <br> Lahore, PK 54000<br>0323-7404040
+                                    </td>
+
+                                    <td>
+                                        <?php echo "Name: " . $name; ?><br>
+                                        <?php echo "Phone:" . $phone; ?><br>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="heading">
+                        <td colspan="2">
+                            Payment Method
+                        </td>
+
+                        <td colspan="2">
+                            Payed
+                        </td>
+                    </tr>
+
+                    <tr class="details">
+                        <td colspan="2">
+                            Cash
+                        </td>
+
+                        <td colspan="2">
+                            <?php echo "Rs." . $payed; ?>
+                        </td>
+                    </tr>
+
+                    <tr class="heading">
+                        <td>
+                            Product
+                        </td>
+                        <td>
+                            Quantity
+                        </td>
+                        <td>
+                            Price
+                        </td>
+                        <td>
+                            Subtotal
+                        </td>
+                    </tr>
+                    <?php
+
+                        $query = "Select p.name,ip.unitprice,ip.quantity from products p , invoiceproducts ip where ip.invoiceid=? And ip.productid=p.id";
+                        $id = $_POST["id"];
+                        $stmt = $conn->prepare($query);
+                        $stmt->bind_param("i", $id);
+                        $stmt->execute();
+                        $stmt->bind_result($pname, $pup, $pqty);
+                        while ($stmt->fetch()) {
+                            echo " <tr class=\"item\">
+                                    <td>$pname</td>
+                                    <td>Rs. $pup</td>
+                                    <td>$pqty</td>
+                                    <td>Rs. " . ($pqty * $pup) . "</td>
+                                </tr>";
+                        }
+                    ?>
+                        <tr class="total">
+                            <td></td>
+                            <!-- <td></td> -->
+
+                            <td colspan="3">
+                                Total:
+                                <?php echo "Rs." . $total; ?>
+                            </td>
+                        </tr>
+                        <tr class="total">
+                            <td></td>
+                            <td colspan="3">
+                                <?php
+if ($payed > $total) {
+    echo "Change: Rs." . ($payed - $total);
+} else {
+    echo "Remaining: Rs." . ($total - $payed);
+}
+?>
+                            </td>
+                        </tr>
+                </table>
+                <br/>
+                <br/>
+                <div class="text-center center-block">Developed by Zain Aftab - fb.com/skynetlabz</div>
+            </div>
+        </div>
 </div>
+<style>
+
+#bg-text
+{
+    color:lightgrey;
+    font-size:120px;
+    transform:rotate(300deg);
+    -webkit-transform:rotate(300deg);
+}
+#background{
+    position:absolute;
+    z-index:0;
+    background:transparent;
+    display:block;
+    min-height:50%;
+    min-width:70%;
+    color:yellow;
+    left:30%
+}
+
+</style>
+<script>
+    function myFunction() {
+       window.print();
+    }
+function PrintPanel() {
+var panel = document.getElementById("abcdefg");
+var printWindow = window.open('', '', 'height=auto,width=auto,scrollbars=1');
+
+        printWindow.document.write('<html><head><title></title></head>');
+        printWindow.document.write('<body>');
+        var pHeight = panel.clientHeight;
+        var windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+		var noOfWatermark = pHeight/windowHeight;
+		// for(var i=0;i<noOfWatermark;i++){
+		// 		printWindow.document.write('<div style="opacity: 0.5;color: BLACK;position: absolute;top: '+windowHeight*i+'px;right: 0;">Sample Watermark</div>');
+		// 	}
+        printWindow.document.write('<style>#bg-text{color:#8c292966;font-size:120px;transform:rotate(300deg);-webkit-transform:rotate(300deg)}#background{position:absolute;z-index:0;background:transparent;display:block;min-height:50%;min-width:70%;color:#8c292966;left:20%;top:20%} @media print{#bg-text{color:#8c292966;font-size:120px;transform:rotate(300deg);-webkit-transform:rotate(300deg)}#background{position:absolute;z-index:0;background:transparent;display:block;min-height:50%;min-width:70%;color:#8c292966;left:20%;top:20%}}</style>')
+        <?php if ($status == 1) {?>
+        printWindow.document.write('<div id="background"><p id="bg-text">Paid</p></div>');
+        <?php } else {?>
+            printWindow.document.write('<div id="background"><p id="bg-text">Remaining</p></div>');
+        <?php }?>
+        printWindow.document.write(panel.innerHTML);
+        // window.setTimeout("javascript:setPortrait();", 500);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+
+
+        setTimeout(function () {
+            printWindow.print();
+        }, 500);
+        return false;
+    }
+</script>
+<button class="btn btn-primary hidden-print" onclick="PrintPanel()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
 
 <button class="btn btn-primary btn-lg">Clear bill</button>
-	</div>
+</div>
 
-	<?php include "footer.php"; ?>
+<?php include "footer.php";?>

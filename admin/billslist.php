@@ -1,6 +1,25 @@
 <?php include 'header.php';?>
 
+<script>
+    $(document).ready(function() {
+        $("#myTable").tablesorter();
+    });
+</script>
+<style>
+        th.headerSortUp {
+            background-image: url('../images/asc.gif');
+            /* background-color: #3399FF;  */
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
 
+        th.headerSortDown {
+            background-image: url('../images/desc.gif');
+            /* background-color: #3399FF;  */
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+    </style>
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
@@ -20,8 +39,8 @@
                     <div class="col-lg-12">
                         <!-- /.panel-heading -->
                         <!-- <div class="panel-body"> -->
-                            <table class="table table-bordered table-striped">
-                                <thead><tr><th>Name</th><th>Price</th><th>Payed</th><th>Remaining</th><th>Payable Date</th><th>Status</th><th></th></tr></thead>
+                            <table id="myTable" class="table table-bordered table-striped">
+                                <thead><tr><th>Id</th><th>Name</th><th>Price</th><th>Payed</th><th>Remaining</th><th>Payable Date</th><th>Status</th><th></th></tr></thead>
                                 <?php
                                 $rem;
 if (isset($_POST["type"])) {
@@ -42,6 +61,7 @@ if (isset($_POST["type"])) {
         }
         $rem=($tot - $payd) ;
         echo "<tr>
+        <td>$id</td>
         <td>$name</td>
         <td>$tot</td>
         <td>$payd</td>
@@ -72,6 +92,7 @@ if (isset($_POST["type"])) {
         }
         $rem=($tot - $payd) ;
         echo "<tr>
+        <td>$id</td>
         <td>$name</td>
         <td>$tot</td>
         <td>$payd</td>

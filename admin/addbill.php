@@ -2,7 +2,7 @@
 include "header.php";
 // error_reporting(E_ALL);
 if (isset($_POST["name"]) && isset($_POST["payed"]) && isset($_POST["total"]) && isset($_POST["phone"]) && isset($_POST["fdate"]) && isset($_POST["tdate"])) {
-    $query = "Insert into invoice (payed,total,name,phone,due_date,st_date) values (?,?,?,?,?)";
+    $query = "Insert into invoice (payed,total,name,phone,due_date,st_date,status) values (?,?,?,?,?,?,?)";
     $status;
     if ($_POST["total"] == $_POST["payed"]) {
         $status = 1;
@@ -10,8 +10,9 @@ if (isset($_POST["name"]) && isset($_POST["payed"]) && isset($_POST["total"]) &&
         $status = 0;
     }
     $stmt = $conn->prepare($query);
-    echo $query;
-    $stmt->bind_param("iissssi", $_POST["payed"], $_POST["total"], $_POST["name"], $_POST["phone"], $_POST["tdate"], $_POST["fdate"],$status);
+    // echo $query;
+    //    echo "Insert into invoice (payed,total,name,phone,due_date,st_date) values (". $_POST["payed"].",".$_POST["total"].",".$_POST["name"].",".$_POST["phone"].",".$_POST["tdate"].",".$_POST["fdate"].",".$status.")";
+    $stmt->bind_param("iissssi", $_POST["payed"], $_POST["total"], $_POST["name"], $_POST["phone"], $_POST["tdate"], $_POST["fdate"], $status);
     echo mysqli_error($conn);
 
     $stmt->execute();
@@ -30,6 +31,16 @@ if (isset($_POST["name"]) && isset($_POST["payed"]) && isset($_POST["total"]) &&
             $stmt->close();
         }
     }
+    ?>
+    <form id="myForm" action="billdetails.php" method="post">
+    <?php
+    echo "<input type=\"hidden\" name=\"id\" value=\"$bid\">";
+    ?>
+    </form>
+    <script type="text/javascript">
+        document.getElementById('myForm').submit();
+    </script>
+    <?php
 }
 
 $query = "Select id,name,cost from products";

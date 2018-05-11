@@ -58,7 +58,6 @@ if (isset($_POST['pname']) && isset($_POST['pprice']) && isset($_POST['ptype']))
     <div class="row">
         <div class="col-lg-9">
             <form class="form form-horizontal" method="post" action="./addproduct.php">
-                <fieldset>
                     Product Name: <input type="text" class="form-control form-control-plaintext" placeholder="Enter Product Name" name="pname" required/>
                     Unit Price: <input type="number" class="form-control form-control-plaintext" placeholder="Enter Unit Price" name="pprice"  required/>
                     Description: <input type="text" class="form-control form-control-plaintext" placeholder="Enter Description" name="pdesc"  required/>
@@ -99,7 +98,6 @@ $stmt->close();
                     <br/>
                     <input type="button" class="btn btn-info" id="add-more" value="+" />
                     <input type="submit" class="btn btn-success" id="save-product" value="Save Product">
-                </fieldset>
             </form>
         </div>
         <!-- /.col-lg-4 -->
