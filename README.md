@@ -6,7 +6,10 @@ To begin using this POS system,download this repository
 deploy on public web hosting server or localhost.
 import database from pos_db.sql file
 
-## Using the Source Files
+## Login info
+
+Username: admin@gmail.com
+password: 12345
 
 ## Bugs and Issues
 
