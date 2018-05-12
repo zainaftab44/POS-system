@@ -48,6 +48,14 @@ $stmt->execute();
 $stmt->bind_result($mnlvlcount);
 $stmt->fetch();
 $stmt->close();
+// low quantity level count
+$query = "Select Count(id) from messages";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$stmt->bind_result($msgcount);
+$stmt->fetch();
+$stmt->close();
+
 
 
 ?>
@@ -76,6 +84,30 @@ $stmt->close();
                     </div>
                 </div>
                 <a href="billslist.php">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                                <?php echo $msgcount; ?>
+                            </div>
+                            <div>Messages!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="messages.php">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -207,7 +239,56 @@ $stmt->close();
     </div>
     <!-- /.row -->
     <div class="row">
-        
+        <?php
+$stmt = $conn->prepare("Select email,name,subject,message,creation_time from messages Order By creation_time DESC Limit 0,5");
+$stmt->execute();
+$stmt->bind_result($em, $nam, $subj, $msg, $dat);
+?>
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Latest 5 Messages</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+
+        <?php
+while ($stmt->fetch()) {
+    ?>
+
+            <div class="left-panel">
+                <div class="col-xs-11 col-sm-5 col-lg-5">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <div class="icerik-bilgi">
+                                    <h2>
+                                       Subject: <?php echo $subj; ?>
+                                    </h2>
+                                    </a>
+                                    <p>
+                                       Message:  <?php echo $msg; ?>
+                                    </p>
+                                    <div class="btn-group">
+                                        <p class="btn btn-social" data-toggle="tooltip" title="Sender Email"><i class="fa fa-2x fa-envelope"></i>
+                                            <?php echo $em; ?>
+                                        </p>
+                                        <p class="btn btn-social" data-toggle="tooltip" title="Sender Name"><i class="fa fa-2x fa-user"></i>
+                                            <?php echo $nam; ?>
+                                        </p>
+                                        <p class="btn btn-social" data-toggle="tooltip" title="Creation Date"><i class="fa fa-2x fa-calendar-times-o"></i>
+                                            <?php echo $dat; ?> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php
+}?>
     </div>
     <!-- /.row -->
 </div>

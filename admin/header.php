@@ -69,25 +69,28 @@ if (!isset($_SESSION['usr'])) {
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="addbill.php"><i class="fa fa-bar-chart-o fa-fw"></i>Add Order</a>
+                            <a href="addbill.php"><i class="fa fa-bar-chart-o fa-fw"></i> Add Order</a>
                         </li>
                         <li>
-                            <a href="billslist.php"><i class="fa fa-table fa-fw"></i>List Orders</a>
+                            <a href="billslist.php"><i class="fa fa-list fa-fw"></i> List Orders</a>
                         </li>
                         <li>
-                            <a href="listitems.php"><i class="fa fa-edit fa-fw">List Stock</i> </a>
+                            <a href="listitems.php"><i class="fa fa-shopping-cart fa-fw"></i> List Stock </a>
                         </li>
                         <li>
-                            <a href="additem.php"><i class="fa fa-wrench fa-fw"></i>Add Stock</a>
+                            <a href="additem.php"><i class="fa fa-plus-square fa-fw"></i> Add Stock</a>
                         </li>
                         <li>
-                            <a href="addproduct.php"><i class="fa fa-sitemap fa-fw"></i> Add Product</a>
+                            <a href="addproduct.php"><i class="fa fa-plus-circle fa-fw"></i> Add Product</a>
                         </li>
                         <li>
-                            <a href="listproducts.php"><i class="fa fa-sitemap fa-fw"></i> List Products</a>
+                            <a href="listproducts.php"><i class="fa fa-product-hunt fa-fw"></i> List Products</a>
                         </li>
                         <li>
-                            <a href="changepass.php"><i class="fa fa-key fa-fw"></i>Change Password</a>
+                            <a href="messages.php"><i class="fa fa-comments fa-fw"></i> Messages</a>
+                        </li>
+                        <li>
+                            <a href="changepass.php"><i class="fa fa-key fa-fw"></i> Change Password</a>
                         </li>
                         <li>
                             <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

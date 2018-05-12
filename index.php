@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>HTML Template</title>
+    <title>MA Printers</title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
@@ -89,9 +89,8 @@
                     <div class="col-md-10 col-md-offset-1">
                         <div class="home-content">
                             <h1 class="white-text">MA Printers</h1>
-                            <p class="white-text">Morbi mattis felis at nunc. Duis viverra diam non justo. In nisl. Nullam sit amet magna in magna gravida vehicula. Mauris tincidunt sem sed arcu. Nunc posuere.
-                            </p>
-                            <button class="white-btn">Get Started!</button>
+                            <p class="white-text">All kinds of flex, banners, standies, corporate stationary and cards printing</p>
+                            <a href="#contact" class="white-btn">Contact Us</a>
                             <button class="main-btn">Learn more</button>
                         </div>
                     </div>
@@ -430,15 +429,25 @@
                     </div>
                 </div>
                 <!-- /contact -->
-
+<?php 
+error_reporting(~E_ALL);
+if(isset($_POST["email"])){
+include "./admin/dbconn.php";
+    $stmt = $conn->prepare("Insert into messages (name,email,subject,message,creation_time) values(?,?,?,?,?)");
+    // echo $_POST["name"]."<br>".$_POST["email"]."<br>".$_POST["subj"]."<br>".$_POST["msg"]."<br>".date("Y-m-d H:i:s");
+    $stmt->bind_param("sssss",$_POST["name"],$_POST["email"],$_POST["subj"],$_POST["msg"],date("Y-m-d H:i:s"));
+    $stmt->execute();
+    echo "<script>alert('Message has been recorded Successfully. We will get in touch with you ASAP.')</script>";
+}
+?>
                 <!-- contact form -->
                 <div class="col-md-8 col-md-offset-2">
-                    <form class="contact-form">
-                        <input class="input" placeholder="Name" style="color: black;border-color: black;border-style: outset;" type="text">
-                        <input class="input" placeholder="Email" style="color: black;border-color: black;border-style: outset;" type="email">
-                        <input class="input" placeholder="Subject" style="/*! color: black; */border-color: black;border-style: outset;color: black;border-color: black;border-style: outset;" type="text">
-                        <textarea class="input" placeholder="Message" style="color: black;border-color: black;border-style: outset;"></textarea>
-                        <button class="main-btn" style="border-color: black;border-style: outset;">Send message</button>
+                    <form method="POST" class="contact-form">
+                        <input class="input" name='name' placeholder="Name" maxlength="100" style="color: black;border-color: black;border-style: outset;" type="text">
+                        <input class="input" name='email'  maxlength="100" required placeholder="Email" style="color: black;border-color: black;border-style: outset;" type="email">
+                        <input class="input" name='subj' maxlength="100" required placeholder="Subject" style="/*! color: black; */border-color: black;border-style: outset;color: black;border-color: black;border-style: outset;" type="text">
+                        <textarea class="input" name='msg'  maxlength="1000" required placeholder="Message" style="color: black;border-color: black;border-style: outset;"></textarea>
+                        <button class="main-btn" type="submit" style="border-color: black;border-style: outset;">Send message</button>
                     </form>
                 </div>
                 <!-- /contact form -->
@@ -483,7 +492,7 @@
 
                     <!-- footer copyright -->
                     <div class="footer-copyright">
-                        <p>Copyright © 2017. All Rights Reserved. Deployed by <a href="#" target="_blank">Zain Aftab | Skynetlabz</a></p>
+                        <p>Copyright © 2018. All Rights Reserved. Deployed by <a href="https://www.facebook.com/skynetlabz" target="_blank">Zain Aftab | Skynetlabz</a></p>
                     </div>
                     <!-- /footer copyright -->
 
