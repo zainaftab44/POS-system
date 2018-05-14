@@ -142,7 +142,7 @@ $stmt->close();
                             <table>
                                 <tr>
                                     <td>
-                                        MA Printer.<br> 12345 Sunny Road
+                                        MA Printers<br> Chowk Daroghawala Near <br> Baba Gadi Shah Drbar
                                         <br> Lahore, PK 54000<br>0323-7404040
                                     </td>
 
