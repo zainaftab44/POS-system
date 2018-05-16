@@ -36,9 +36,9 @@
                 </thead>
                 <tbody>
                     <?php
-$query = "Select id,name,cost,type from products ";
+$query = "Select id,name,cost,type from products where prod_avail=1  ";
 if (isset($_GET["type"])) {
-    $query .= "where type = " . $_GET["type"];
+    $query .= " AND type = " . $_GET["type"];
 }
 // echo $query;
 $stmt = $conn->prepare($query);
@@ -52,7 +52,7 @@ if ($stmt->execute()) {
             $type = "Inhouse";
         }
 
-        echo " <tr><td>$id</td><td>$name</td><td>$price</td><td>$type</td><td><a href='productDetails.php?id=$id' class='btn btn-primary'>Details</a><a href='?id=$id' class='btn btn-danger'>remove</a></td></tr>";
+        echo " <tr><td>$id</td><td>$name</td><td>$price</td><td>$type</td><td><a href='productDetails.php?id=$id' class='btn btn-primary'>Details</a><a href='removeproduct.php?id=$id' class='btn btn-danger'>remove</a></td></tr>";
     }
 
 }

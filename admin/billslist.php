@@ -1,5 +1,5 @@
 <?php include 'header.php';?>
-
+<script src="js/jquery-paginate.js"></script>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
@@ -12,6 +12,30 @@
                 </select>
                 <button type="submit" class="btn btn-primary">Show</button>
             </form>
+            <script>
+            $('#myTable').paginate({ limit: 10 });
+                function myFunction() {
+                  // Declare variables
+                  var input, filter, table, tr, td, i;
+                  input = document.getElementById("myInput");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("myTable");
+                  tr = table.getElementsByTagName("tr");
+                
+                  // Loop through all table rows, and hide those who don't match the search query
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    }
+                  }
+                }
+            </script>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -20,7 +44,7 @@
         <div class="col-lg-12">
             <!-- /.panel-heading -->
             <!-- <div class="panel-body"> -->
-            <table id="myTable" class="table table-bordered table-striped">
+            <table id="myTable" class="table table-bordered table-striped table-responsive table-hover paginated">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -55,18 +79,18 @@ if (isset($_POST["type"])) {
                 $s = "Partial payment";
             }
 
-            $d = '<form id="myForm" action="billdetails.php" method="post">'.
+        }
+            $d .= '<form id="myForm" action="billdetails.php" method="post">'.
             "<input type=\"hidden\" name=\"id\" value=\"$id\">".
             '<button type="submit" class="btn btn-primary">Details</button>
             </form>'."<p class='alert alert-success'> Cleared</p>";
-        }
         echo "<tr>
         <td>$id</td>
         <td>$name</td>
         <td>$tot</td>
         <td>$payd</td>
         <td>$rem</td>
-        <td>$tdate</td>
+        <td>". date("d-m-Y", strtotime($tdate))."</td>
         <td>$s</td>
         <td>$d</td></tr>";
     }
@@ -84,19 +108,20 @@ if (isset($_POST["type"])) {
         $s = "";
         $d = "";
         $rem = ($tot - $payd);
+            $d = '<form id="myForm" action="billdetails.php" method="post">'.
+            "<input type=\"hidden\" name=\"id\" value=\"$id\">".
+            '<button type="submit" class="btn btn-primary">Details</button>
+            </form>';
         if ($status == 0) {
             $s = "<a class='btn btn-primary' href='payrem.php?id=$id'>Pay Remaining</a>";
-            $d = "<a class='btn btn-primary' href='clearbill.php?id=$id'>Clear Bill</a>";
+            $d .= "<a class='btn btn-primary' href='clearbill.php?id=$id'>Clear Bill</a>";
         } else {
             if ($rem <= 0) {
                 $s = "Fully Paid";
             } else {
                 $s = "Partial payment";
             }
-            $d = '<form id="myForm" action="billdetails.php" method="post">'.
-            "<input type=\"hidden\" name=\"id\" value=\"$id\">".
-            '<button type="submit" class="btn btn-primary">Details</button>
-            </form>'."<p class='alert alert-success'> Cleared</p>";
+            $d.="<p class='btn-success'> Cleared</p>";
         }
         echo "<tr>
         <td>$id</td>
@@ -104,7 +129,7 @@ if (isset($_POST["type"])) {
         <td>$tot</td>
         <td>$payd</td>
         <td>$rem</td>
-        <td>$tdate</td>
+        <td>". date("d-m-Y", strtotime($tdate))."</td>
         <td>$s</td>
         <td>$d</td></tr>";
     }

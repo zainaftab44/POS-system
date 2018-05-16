@@ -1,3 +1,3 @@
 <?php 
-$conn = mysqli_connect("127.0.0.1","root","root","pos_db");
+$conn = mysqli_connect("localhost","kvaztcvk_root","1234567890!@#$%^&*()","kvaztcvk_pos_db");
 ?>

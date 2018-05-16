@@ -59,7 +59,20 @@ if (!isset($_SESSION['usr'])) {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                <a class="navbar-brand" href="index.html">Sales Panel</a>
+                <a class="navbar-brand" href="/admin">Sales Panel</a>
+               
+            </div>
+            <div>
+                     <?php 
+                if(isset($print)&& $print==0){
+                    $print=1;
+                }
+                if($print==1){?>
+                <div class="pull-right">
+                    <button class="btn btn-primary hidden-print pull-right" onclick="PrintPanel()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+                    <a class="btn btn-primary pull-right" href="./clearbill.php?id=<?php echo $id; ?>">Clear bill</a>
+                </div>
+                <?php }?>
             </div>
             <!-- /.navbar-header -->
             <div class="navbar-default sidebar" role="navigation">

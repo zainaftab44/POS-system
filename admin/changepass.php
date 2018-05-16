@@ -1,8 +1,10 @@
 <?php include "./header.php";
 if (isset($_POST["email"])) {
-    $stmt = $conn->prepare("update users set pass=?");
+    $stmt = $conn->prepare("update users set password=?");
     $stmt->bind_param("s", md5($_POST["email"]));
     $stmt->execute();
+  echo "<script> alert('password updated successfully')</script>";
+    unset($_POST["email"]);
 }
 ?>
 <div id="page-wrapper">
@@ -14,13 +16,11 @@ if (isset($_POST["email"])) {
                     <h3 class="panel-title">Change Password</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" method="post">
-                        <fieldset> 
+                    <form role="form" action="changepass.php" method="post">
                             <div class="form-group">
                                 <input class="form-control" placeholder="Enter new password" name="email" type="password" autofocus>
                             </div>
-                            <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
-                        </fieldset>
+                            <button type="submit" class="btn btn-lg btn-success btn-block">Change Password</button>
                     </form>
                 </div>
             </div>

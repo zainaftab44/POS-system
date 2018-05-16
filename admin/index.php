@@ -240,6 +240,12 @@ $stmt->close();
     <!-- /.row -->
     <div class="row">
         <?php
+        if($msgcount<=0){
+         echo '<div class="col-lg-12">
+            <h1 class="page-header">No message received</h1>
+        </div>';
+        }
+        else{
 $stmt = $conn->prepare("Select email,name,subject,message,creation_time from messages Order By creation_time DESC Limit 0,5");
 $stmt->execute();
 $stmt->bind_result($em, $nam, $subj, $msg, $dat);
@@ -288,7 +294,10 @@ while ($stmt->fetch()) {
             </div>
 
             <?php
-}?>
+}
+
+}
+?>
     </div>
     <!-- /.row -->
 </div>

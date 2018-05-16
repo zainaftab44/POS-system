@@ -1,4 +1,10 @@
-<?php include "header.php";?>
+<?php 
+$print=0;
+if(isset($_POST["id"]))
+    $print=1;
+include "header.php";
+
+?>
 <script type='text/javascript' src='../js/example.js'></script>
 
 <div id="abcdefg">
@@ -9,7 +15,7 @@
             padding: 30px;
             border: 1px solid #eee;
             box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-            font-size: 16px;
+            font-size: 16px;l
             line-height: 24px;
             font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
             color: #555;
@@ -109,12 +115,14 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 $stmt->bind_result($name, $total, $payed, $phone, $status, $ddate, $sdate);
 $stmt->fetch();
+$sdate = date("d-m-Y", strtotime($sdate));
+$ddate = date("d-m-Y", strtotime($ddate));
 $stmt->close();
 ?>
         <div id="page-wrap">
-            <button class="btn btn-primary hidden-print pull-right btn-lg" onclick="PrintPanel()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+            <!--<button class="btn btn-primary hidden-print pull-right btn-lg" onclick="PrintPanel()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>-->
 
-            <a class="btn btn-primary pull-right btn-lg" href="./clearbill.php?id=<?php echo $id; ?>">Clear bill</a>
+            <!--<a class="btn btn-primary pull-right btn-lg" href="./clearbill.php?id=<?php echo $id; ?>">Clear bill</a>-->
 
             <div class="invoice-box">
                 <table cellpadding="0" cellspacing="0">
@@ -123,14 +131,16 @@ $stmt->close();
                             <table>
                                 <tr>
                                     <td class="title">
-                                        <img src="../images/logo.png" style="width:100%; max-width:300px;">
+                                        <img src="../images/logo.jpg" style="width:100%; max-width:200px;">
                                     </td>
 
                                     <td>
                                         Invoice #:
                                         <?php echo $id; ?><br> Created:
                                         <?php echo $sdate; ?><br> Due:
-                                        <?php echo $ddate; ?>
+                                        <?php echo  $ddate; ?> 
+                                        <div id="ccopy" style="display:none"><br><strong>Client Copy</strong><div>
+                                        <div id="ocopy"  style="display:none"><br><strong>Office Copy</strong><div>
                                     </td>
                                 </tr>
                             </table>
@@ -142,13 +152,16 @@ $stmt->close();
                             <table>
                                 <tr>
                                     <td>
-                                        MA Printers<br> Chowk Daroghawala Near <br> Baba Gadi Shah Drbar
-                                        <br> Lahore, PK 54000<br>0323-7404040
+                                        MA Printers<br> Near Chowk Daroghawala
+                                        <br> Lahore, PK 54000
+                                        <br>0323-4747110
+                                        <br>0323-7404040
                                     </td>
 
                                     <td>
-                                        <?php echo "Name: " . $name; ?><br>
-                                        <?php echo "Phone:" . $phone; ?><br>
+                                        Customer Info<br>
+                                        <?php echo " Name: " . $name; ?><br>
+                                        <?php echo "Phone: " . $phone; ?><br>
                                     </td>
                                 </tr>
                             </table>
@@ -179,13 +192,13 @@ $stmt->close();
                         <td>
                             Product
                         </td>
-                        <td>
+                        <td style='text-align:right'>
+                            Unit Price
+                        </td>
+                        <td style='text-align:right'>
                             Quantity
                         </td>
-                        <td>
-                            Price
-                        </td>
-                        <td>
+                        <td style='text-align:right'>
                             Subtotal
                         </td>
                     </tr>
@@ -200,29 +213,31 @@ $stmt->bind_result($pname, $pup, $pqty);
 while ($stmt->fetch()) {
     echo " <tr class=\"item\">
                                     <td>$pname</td>
-                                    <td>Rs. $pup</td>
-                                    <td>$pqty</td>
-                                    <td>Rs. " . ($pqty * $pup) . "</td>
+                                    <td style='text-align:right'>Rs. $pup</td>
+                                    <td style='text-align:right'>$pqty</td>
+                                    <td style='text-align:right'>Rs. " . ($pqty * $pup) . "</td>
                                 </tr>";
 }
 ?>
                         <tr class="total">
-                            <td></td>
-                            <!-- <td></td> -->
+                            <td  colspan="3"></td>
 
-                            <td colspan="3">
+                            <td>
                                 Total:
                                 <?php echo "Rs." . $total; ?>
                             </td>
                         </tr>
                         <tr class="total">
-                            <td></td>
-                            <td colspan="3">
+                            <td  colspan="3"></td>
+
+                            <td>
                                 <?php
-if ($payed > $total) {
+if ($payed >= $total) {
     echo "Change: Rs." . ($payed - $total);
 } else {
-    echo "Remaining: Rs." . ($total - $payed);
+    echo "Remaining: Rs." . ($total - $payed).'<br>';
+    
+    echo "Percentage Paid: " . (($payed/$total)*100). "%";
 }
 ?>
                             </td>
@@ -230,7 +245,7 @@ if ($payed > $total) {
                 </table>
                 <br/>
                 <br/>
-                <div class="text-center center-block">Developed by Zain Aftab - fb.com/skynetlabz</div>
+                <div class="text-center center-block">System Developed by Skynetlabz for MAprinters.net</div>
             </div>
         </div>
 </div>
@@ -267,9 +282,6 @@ if ($payed > $total) {
         var pHeight = panel.clientHeight;
         var windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
         var noOfWatermark = pHeight / windowHeight;
-        // for(var i=0;i<noOfWatermark;i++){
-        // 		printWindow.document.write('<div style="opacity: 0.5;color: BLACK;position: absolute;top: '+windowHeight*i+'px;right: 0;">Sample Watermark</div>');
-        // 	}
         printWindow.document.write('<style>#bg-text{color:#8c292966;font-size:120px;transform:rotate(300deg);-webkit-transform:rotate(300deg)}#background{position:absolute;z-index:0;background:transparent;display:block;min-height:50%;min-width:70%;color:#8c292966;left:20%;top:20%} @media print{#bg-text{color:#8c292966;font-size:120px;transform:rotate(300deg);-webkit-transform:rotate(300deg)}#background{position:absolute;z-index:0;background:transparent;display:block;min-height:50%;min-width:70%;color:#8c292966;left:20%;top:20%}}</style>')
         <?php if ($status == 1) {?>
         printWindow.document.write('<div id="background"><p id="bg-text">Paid</p></div>');
@@ -278,15 +290,16 @@ if ($payed > $total) {
         <?php }?>
         printWindow.document.write(panel.innerHTML);
         // window.setTimeout("javascript:setPortrait();", 500);
-        printWindow.document.write('</body></html>');
+        printWindow.document.write('<script></script></body></html>');
         printWindow.document.close();
 
 
         setTimeout(function() {
             printWindow.print();
         }, 500);
-        return false;
+        callback();
     }
+    
 </script>
 </div>
 

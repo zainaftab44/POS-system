@@ -12,8 +12,6 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- Owl Carousel -->
     <link type="text/css" rel="stylesheet" href="css/owl.carousel.css">
@@ -23,17 +21,15 @@
     <link type="text/css" rel="stylesheet" href="css/magnific-popup.css">
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="css/style1.css">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 </head>
 
 <body>
@@ -52,9 +48,9 @@
                 <div class="navbar-header">
                     <!-- Logo -->
                     <div class="navbar-brand">
-                        <a href="index.html">
-                            <img class="logo" src="img/logo.png" alt="logo">
-                            <img class="logo-alt" src="img/logo-alt.png" alt="logo">
+                        <br>
+                        <a href="/">
+                            MA Printers
                         </a>
                     </div>
                     <!-- /Logo -->
@@ -70,7 +66,6 @@
                 <ul class="main-nav nav navbar-nav navbar-right">
                     <li class=""><a href="#home">Home</a></li>
                     <li class=""><a href="#service">Services</a></li>
-                    <li class=""><a href="#portfolio">Portfolio</a></li>
                     <li class=""><a href="#team">Team</a></li>
                     <li class="active"><a href="#contact">Contact</a></li>
                 </ul>
@@ -91,7 +86,7 @@
                             <h1 class="white-text">MA Printers</h1>
                             <p class="white-text">All kinds of flex, banners, standies, corporate stationary and cards printing</p>
                             <a href="#contact" class="white-btn">Contact Us</a>
-                            <button class="main-btn">Learn more</button>
+                            <a href="#service" class="main-btn">Learn more</a>
                         </div>
                     </div>
                     <!-- /home content -->
@@ -118,62 +113,44 @@
                 </div>
                 <!-- /Section header -->
 
-                <!-- service -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="service">
-                        <i class="fa fa-diamond"></i>
-                        <h3>App Development</h3>
-                        <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero.</p>
-                    </div>
-                </div>
-                <!-- /service -->
+                
+                
+                
 
-                <!-- service -->
+                
                 <div class="col-md-4 col-sm-6">
                     <div class="service">
-                        <i class="fa fa-rocket"></i>
+                        <i class="fa fa-3x fa-rocket"></i>
                         <h3>Graphic Design</h3>
-                        <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero.</p>
+                        <p>Come to us with your ideas and we can provide you with satisfactory designs</p>
                     </div>
                 </div>
                 <!-- /service -->
 
                 <!-- service -->
+                
+                
+
+                
                 <div class="col-md-4 col-sm-6">
                     <div class="service">
-                        <i class="fa fa-cogs"></i>
-                        <h3>Creative Idea</h3>
-                        <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero.</p>
+                        <i class="fa fa-3x fa-diamond"></i>
+                        <h3>Printing</h3>
+                        <p>All kinds of flex, standies, cards, letterheads, tickets and wedding cards printing</p>
                     </div>
                 </div>
+                
+
+                
+                
                 <!-- /service -->
 
                 <!-- service -->
                 <div class="col-md-4 col-sm-6">
                     <div class="service">
-                        <i class="fa fa-diamond"></i>
-                        <h3>Marketing</h3>
-                        <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero.</p>
-                    </div>
-                </div>
-                <!-- /service -->
-
-                <!-- service -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="service">
-                        <i class="fa fa-pencil"></i>
-                        <h3>Awesome Support</h3>
-                        <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero.</p>
-                    </div>
-                </div>
-                <!-- /service -->
-
-                <!-- service -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="service">
-                        <i class="fa fa-flask"></i>
+                        <i class="fa fa-3x fa-flask"></i>
                         <h3>Brand Design</h3>
-                        <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero.</p>
+                        <p>Complete and comprehensive brand designing and printing services at competitive rates </p>
                     </div>
                 </div>
                 <!-- /service -->
@@ -186,113 +163,6 @@
 
     </div>
     <!-- About -->
-
-
-
-
-    <!-- Portfolio -->
-    <div id="portfolio" class="section md-padding bg-grey">
-
-        <!-- Container -->
-        <div class="container">
-
-            <!-- Row -->
-            <div class="row">
-
-                <!-- Section header -->
-                <div class="section-header text-center">
-                    <h2 class="title">Featured Works</h2>
-                </div>
-                <!-- /Section header -->
-
-                <!-- Work -->
-                <div class="col-md-4 col-xs-6 work">
-                    <img class="img-responsive" src="./img/work1.jpg" alt="">
-                    <div class="overlay"></div>
-                    <div class="work-content">
-                        <span>Category</span>
-                        <h3>Lorem ipsum dolor</h3>
-                        <div class="work-link">
-                            <a href="#"><i class="fa fa-external-link"></i></a>
-                            <a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Work -->
-
-                <!-- Work -->
-                <div class="col-md-4 col-xs-6 work">
-                    <img class="img-responsive" src="./img/work2.jpg" alt="">
-                    <div class="overlay"></div>
-                    <div class="work-content">
-                        <span>Category</span>
-                        <h3>Lorem ipsum dolor</h3>
-                        <div class="work-link">
-                            <a href="#"><i class="fa fa-external-link"></i></a>
-                            <a class="lightbox" href="./img/work2.jpg"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Work -->
-
-                <!-- Work -->
-                <div class="col-md-4 col-xs-6 work">
-                    <img class="img-responsive" src="./img/work3.jpg" alt="">
-                    <div class="overlay"></div>
-                    <div class="work-content">
-                        <span>Category</span>
-                        <h3>Lorem ipsum dolor</h3>
-                        <div class="work-link">
-                            <a href="#"><i class="fa fa-external-link"></i></a>
-                            <a class="lightbox" href="./img/work3.jpg"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Work -->
-
-                <!-- Work -->
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-            <!-- /Row -->
-
-        </div>
-        <!-- /Container -->
-
-    </div>
-    <!-- /Portfolio -->
-
-    <!-- Service -->
-
-    <!-- /Service -->
-
-
-    <!-- Why Choose Us -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Team -->
     <div id="team" class="section md-padding">
@@ -405,7 +275,7 @@
                     <div class="contact">
                         <i class="fa fa-phone"></i>
                         <h3>Phone</h3>
-                        <p>512-421-3940</p>
+                        <p>0323-7404040</p>
                     </div>
                 </div>
                 <!-- /contact -->
@@ -415,7 +285,7 @@
                     <div class="contact">
                         <i class="fa fa-envelope"></i>
                         <h3>Email</h3>
-                        <p>email@support.com</p>
+                        <p>maprinters.co@gmail.com</p>
                     </div>
                 </div>
                 <!-- /contact -->
@@ -425,7 +295,7 @@
                     <div class="contact">
                         <i class="fa fa-map-marker"></i>
                         <h3>Address</h3>
-                        <p>1739 Bubby Drive</p>
+                        <p>Chowk Daroghawala Lahore</p>
                     </div>
                 </div>
                 <!-- /contact -->
@@ -475,19 +345,19 @@ include "./admin/dbconn.php";
 
                     <!-- footer logo -->
                     <div class="footer-logo">
-                        <a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+                        <a href="/"><img src="images/logo.jpg" alt="logo"></a>
                     </div>
                     <!-- /footer logo -->
 
                     <!-- footer follow -->
-                    <ul class="footer-follow">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                    </ul>
+                    <!--<ul class="footer-follow">-->
+                    <!--    <li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+                    <!--    <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+                    <!--    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+                    <!--    <li><a href="#"><i class="fa fa-instagram"></i></a></li>-->
+                    <!--    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
+                    <!--    <li><a href="#"><i class="fa fa-youtube"></i></a></li>-->
+                    <!--</ul>-->
                     <!-- /footer follow -->
 
                     <!-- footer copyright -->

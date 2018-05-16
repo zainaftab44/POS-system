@@ -43,7 +43,7 @@ if (isset($_POST["name"]) && isset($_POST["payed"]) && isset($_POST["total"]) &&
     <?php
 }
 
-$query = "Select id,name,cost from products";
+$query = "Select id,name,cost from products where prod_avail=1";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $stmt->bind_result($id, $name, $price);
