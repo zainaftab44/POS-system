@@ -19,7 +19,7 @@ Have a bug or an issue with this System? [Open a new issue](https://github.com/z
 This system is developed by [Zain Aftab](https://www.github.com/zainaftab44). Want a customized features according to your requirements or want a new system developed... Contact me at [zainaftab44](mailto:zainaftab44@gmail.com)
 
 ## POS-system Copyright
-Copyright 2018 Zain Aftab [Skynetlabz](https://www.facebook.com/skynetlabz) Code released under the [GNU GPLv3](https://github.com/zainaftab44/POS-System/LICENSE) license.
+Copyright 2018 Zain Aftab [Skynetlabz](https://www.facebook.com/skynetlabz) Code released under the [GNU GPLv3](https://github.com/zainaftab44/POS-system/blob/master/LICENSE) license.
 
 
 ### SB Admin2 -> Copyright and License
