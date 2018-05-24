@@ -1,4 +1,4 @@
-# Point of sale - based on [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/)
+# Point of sale 
 
 ## Getting Started
 
